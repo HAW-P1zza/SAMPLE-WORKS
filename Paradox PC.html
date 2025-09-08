@@ -1,0 +1,1227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Paradox PC - Shop the Best PC Parts Online</title>
+    <meta name="description" content="Paradox PC: Your one-stop shop for PC parts, laptops, gaming gear, and accessories. Fast shipping, secure checkout, and top deals.">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style>
+        body {
+            font-family: 'Segoe UI', Arial, sans-serif;
+            margin: 0;
+            background: #18181b;
+            color: #f3f4f6;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+        .header-main {
+            background: linear-gradient(90deg, #ff6600 0%, #ff3300 100%);
+            padding: 0;
+            position: relative;
+            box-shadow: 0 4px 24px #000a;
+        }
+        .navbar-main {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 18px 36px;
+            flex-wrap: wrap;
+        }
+        .navbar-logo {
+            display: flex;
+            align-items: center;
+        }
+        .navbar-logo img {
+            height: 2.5em;
+            margin-right: 12px;
+            filter: drop-shadow(0 0 8px #fff8);
+        }
+        .navbar-logo span {
+            font-size: 2em;
+            font-weight: bold;
+            color: #fff;
+            letter-spacing: 2px;
+        }
+        .navbar-links {
+            display: flex;
+            gap: 24px;
+            flex-wrap: wrap;
+        }
+        .navbar-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 1.1em;
+            padding: 6px 16px;
+            border-radius: 8px;
+            transition: background 0.2s, color 0.2s;
+        }
+        .navbar-links a:hover {
+            background: #fff2;
+            color: #ff6600;
+        }
+        .navbar-search {
+            display: flex;
+            align-items: center;
+            margin: 12px 0;
+        }
+        .navbar-search input {
+            padding: 10px 16px;
+            border-radius: 8px 0 0 8px;
+            border: none;
+            font-size: 1em;
+            width: 220px;
+            background: #fff;
+            color: #222;
+        }
+        .navbar-search button {
+            padding: 10px 18px;
+            border: none;
+            border-radius: 0 8px 8px 0;
+            background: #ff6600;
+            color: #fff;
+            font-size: 1em;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .navbar-search button:hover { background: #ff3300; }
+        .navbar-user {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .navbar-user img {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #fff;
+            background: #18181b;
+            cursor: pointer;
+        }
+        .navbar-cart {
+            position: relative;
+            margin-left: 10px;
+        }
+        .navbar-cart img {
+            width: 32px;
+            height: 32px;
+            vertical-align: middle;
+            cursor: pointer;
+            filter: drop-shadow(0 0 4px #ff6600cc);
+        }
+        .cart-count {
+            background: #ff6600;
+            color: #fff;
+            border-radius: 50%;
+            font-size: 0.9em;
+            padding: 2px 7px;
+            position: absolute;
+            top: -6px;
+            right: -8px;
+            z-index: 1;
+        }
+        .main-banner {
+            background: url('https://images.unsplash.com/photo-1517336714731-489689fd1ca8?auto=format&fit=crop&w=1200&q=80') center/cover no-repeat;
+            min-height: 340px;
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            padding: 0 60px;
+            position: relative;
+        }
+        .main-banner-content {
+            background: rgba(24,24,27,0.85);
+            border-radius: 18px;
+            padding: 36px 48px;
+            max-width: 480px;
+        }
+        .main-banner-content h2 {
+            color: #ff6600;
+            font-size: 2.2em;
+            margin: 0 0 12px 0;
+        }
+        .main-banner-content p {
+            color: #fff;
+            font-size: 1.2em;
+            margin-bottom: 18px;
+        }
+        .main-banner-content .shop-btn {
+            background: #ff6600;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 14px 36px;
+            font-size: 1.1em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .main-banner-content .shop-btn:hover { background: #ff3300; }
+        .categories-section {
+            max-width: 1100px;
+            margin: 48px auto 0 auto;
+        }
+        .categories-title {
+            color: #ff6600;
+            font-size: 1.3em;
+            margin-bottom: 18px;
+        }
+        .categories-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+            gap: 32px;
+        }
+        .category-card {
+            background: #23272f;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px #000a;
+            padding: 28px 0 18px 0;
+            text-align: center;
+            transition: box-shadow 0.2s, transform 0.2s;
+            cursor: pointer;
+        }
+        .category-card:hover {
+            box-shadow: 0 8px 32px #ff660088;
+            transform: translateY(-4px) scale(1.03);
+        }
+        .category-card img {
+            width: 60px;
+            margin-bottom: 12px;
+        }
+        .category-card span {
+            color: #ff6600;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        .popular-section {
+            max-width: 1100px;
+            margin: 60px auto 0 auto;
+        }
+        .popular-title {
+            color: #ff6600;
+            font-size: 1.5em;
+            margin-bottom: 18px;
+        }
+        .popular-products {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 28px;
+        }
+        .product-card {
+            background: #23272f;
+            border-radius: 14px;
+            box-shadow: 0 2px 12px #000a;
+            padding: 22px 18px 18px 18px;
+            text-align: center;
+            transition: box-shadow 0.2s, transform 0.2s;
+            cursor: pointer;
+            border: 2px solid #23272f;
+            position: relative;
+        }
+        .product-card:hover {
+            box-shadow: 0 8px 32px #ff660088;
+            border: 2px solid #ff6600;
+            transform: translateY(-4px) scale(1.03);
+        }
+        .product-card img {
+            width: 100px;
+            height: 100px;
+            object-fit: contain;
+            background: #18181b;
+            border-radius: 10px;
+            margin-bottom: 12px;
+            box-shadow: 0 2px 12px #000a;
+            border: 1px solid #333;
+        }
+        .product-title {
+            font-size: 1.1em;
+            font-weight: bold;
+            color: #ff6600;
+            margin-bottom: 6px;
+        }
+        .product-price {
+            color: #fff;
+            background: #ff6600;
+            border-radius: 8px;
+            padding: 4px 14px;
+            font-size: 1em;
+            font-weight: bold;
+            margin-bottom: 0;
+            margin-top: 10px;
+            display: inline-block;
+            box-shadow: 0 2px 8px #ff660044;
+        }
+        .product-qty {
+            margin: 10px 0 0 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+        .product-qty input {
+            width: 40px;
+            text-align: center;
+            border-radius: 6px;
+            border: 1px solid #333;
+            background: #18181b;
+            color: #fff;
+            padding: 4px 0;
+        }
+        .add-cart-btn {
+            background: #ff6600;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 8px 18px;
+            font-size: 1em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 10px;
+            width: 90%;
+        }
+        .add-cart-btn:hover { background: #ff3300; }
+        .product-modal-bg {
+            display: none;
+            position: fixed;
+            z-index: 300;
+            left: 0; top: 0; width: 100vw; height: 100vh;
+            background: rgba(24,24,27,0.92);
+            align-items: center;
+            justify-content: center;
+        }
+        .product-modal {
+            background: #23272f;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px #000c;
+            padding: 36px 28px 28px 28px;
+            max-width: 520px;
+            width: 95vw;
+            color: #fff;
+            position: relative;
+        }
+        .product-modal-close {
+            position: absolute;
+            top: 14px; right: 18px;
+            font-size: 1.6em;
+            color: #ff6600;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .product-modal-close:hover { color: #fff; }
+        .product-modal-gallery {
+            display: flex;
+            gap: 12px;
+            margin-bottom: 16px;
+            justify-content: center;
+        }
+        .product-modal-gallery img {
+            width: 90px;
+            height: 90px;
+            object-fit: contain;
+            border-radius: 8px;
+            background: #18181b;
+            border: 1px solid #333;
+            cursor: pointer;
+            transition: border 0.2s;
+        }
+        .product-modal-gallery img.selected {
+            border: 2px solid #ff6600;
+        }
+        .product-modal-mainimg {
+            width: 180px;
+            height: 180px;
+            object-fit: contain;
+            border-radius: 12px;
+            background: #18181b;
+            border: 2px solid #ff6600;
+            display: block;
+            margin: 0 auto 18px auto;
+        }
+        .product-modal-title {
+            color: #ff6600;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 8px;
+            text-align: center;
+        }
+        .product-modal-price {
+            color: #fff;
+            background: #ff6600;
+            border-radius: 8px;
+            padding: 4px 18px;
+            font-size: 1.1em;
+            font-weight: bold;
+            margin-bottom: 12px;
+            margin-top: 10px;
+            display: inline-block;
+            box-shadow: 0 2px 8px #ff660044;
+        }
+        .product-modal-desc {
+            color: #a1a1aa;
+            font-size: 1.08em;
+            margin-bottom: 18px;
+            text-align: center;
+        }
+        .product-modal-specs {
+            color: #fff;
+            font-size: 1em;
+            margin-bottom: 10px;
+            background: #18181b;
+            border-radius: 8px;
+            padding: 10px 14px;
+            text-align: left;
+        }
+        .product-modal-qty {
+            margin: 10px 0 0 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+        .product-modal-qty input {
+            width: 40px;
+            text-align: center;
+            border-radius: 6px;
+            border: 1px solid #333;
+            background: #18181b;
+            color: #fff;
+            padding: 4px 0;
+        }
+        .product-modal-addcart {
+            background: #ff6600;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 28px;
+            font-size: 1em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 12px;
+            width: 100%;
+        }
+        .product-modal-addcart:hover { background: #ff3300; }
+        .product-modal-reviews {
+            margin-top: 18px;
+            background: #18181b;
+            border-radius: 8px;
+            padding: 10px 14px;
+        }
+        .review {
+            border-bottom: 1px solid #333;
+            padding: 8px 0;
+        }
+        .review:last-child { border-bottom: none; }
+        .review-user { color: #ff6600; font-weight: bold; }
+        .review-rating { color: gold; margin-left: 6px; }
+        .review-text { color: #fff; margin-top: 2px; }
+        .related-products-title {
+            color: #ff6600;
+            font-size: 1.1em;
+            margin: 24px 0 8px 0;
+        }
+        .related-products {
+            display: flex;
+            gap: 18px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+        .related-product-card {
+            background: #23272f;
+            border-radius: 10px;
+            box-shadow: 0 2px 8px #000a;
+            padding: 12px 10px;
+            text-align: center;
+            width: 120px;
+            cursor: pointer;
+            transition: box-shadow 0.2s, transform 0.2s;
+        }
+        .related-product-card:hover {
+            box-shadow: 0 4px 16px #ff660088;
+            transform: scale(1.04);
+        }
+        .related-product-card img {
+            width: 60px;
+            height: 60px;
+            object-fit: contain;
+            margin-bottom: 6px;
+        }
+        .related-product-card .product-title {
+            font-size: 0.95em;
+            color: #ff6600;
+        }
+        .landing-footer {
+            text-align: center;
+            color: #a1a1aa;
+            font-size: 1em;
+            padding: 32px 0 18px 0;
+            background: #18181b;
+            margin-top: 48px;
+        }
+        .cart-modal-bg {
+            display: none;
+            position: fixed;
+            z-index: 200;
+            left: 0; top: 0; width: 100vw; height: 100vh;
+            background: rgba(24,24,27,0.92);
+            align-items: center;
+            justify-content: center;
+        }
+        .cart-modal {
+            background: #23272f;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px #000c;
+            padding: 36px 28px 28px 28px;
+            max-width: 420px;
+            width: 90vw;
+            color: #fff;
+            position: relative;
+        }
+        .cart-modal-close {
+            position: absolute;
+            top: 14px; right: 18px;
+            font-size: 1.6em;
+            color: #ff6600;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .cart-modal-close:hover { color: #fff; }
+        .cart-list {
+            margin: 0 0 18px 0;
+            padding: 0;
+            list-style: none;
+        }
+        .cart-list li {
+            display: flex;
+            align-items: center;
+            margin-bottom: 12px;
+            border-bottom: 1px solid #333;
+            padding-bottom: 8px;
+        }
+        .cart-list img {
+            width: 40px; height: 40px; border-radius: 8px; margin-right: 12px;
+        }
+        .cart-remove {
+            background: none;
+            border: none;
+            color: #ff6600;
+            font-size: 1.2em;
+            margin-left: auto;
+            cursor: pointer;
+        }
+        .cart-remove:hover { color: #fff; }
+        .checkout-btn {
+            background: #ff6600;
+            color: #fff;
+            border: none;
+            border-radius: 8px;
+            padding: 10px 28px;
+            font-size: 1em;
+            font-weight: 500;
+            cursor: pointer;
+            transition: background 0.2s;
+            margin-top: 12px;
+            width: 100%;
+        }
+        .checkout-btn:hover { background: #ff3300; }
+        .cart-count {
+            background: #ff6600;
+            color: #fff;
+            border-radius: 50%;
+            font-size: 0.9em;
+            padding: 2px 7px;
+            position: absolute;
+            top: 2px;
+            right: 2px;
+            z-index: 1;
+        }
+        .cart-icon {
+            width: 32px;
+            height: 32px;
+            vertical-align: middle;
+            cursor: pointer;
+            filter: drop-shadow(0 0 4px #ff6600cc);
+            margin-left: 18px;
+        }
+        .cart-btn-bar {
+            position: fixed;
+            top: 18px;
+            right: 36px;
+            z-index: 100;
+        }
+        .order-modal-bg {
+            display: none;
+            position: fixed;
+            z-index: 201;
+            left: 0; top: 0; width: 100vw; height: 100vh;
+            background: rgba(24,24,27,0.92);
+            align-items: center;
+            justify-content: center;
+        }
+        .order-modal {
+            background: #23272f;
+            border-radius: 18px;
+            box-shadow: 0 8px 32px #000c;
+            padding: 36px 28px 28px 28px;
+            max-width: 420px;
+            width: 90vw;
+            color: #fff;
+            position: relative;
+        }
+        .order-modal-close {
+            position: absolute;
+            top: 14px; right: 18px;
+            font-size: 1.6em;
+            color: #ff6600;
+            background: none;
+            border: none;
+            cursor: pointer;
+            transition: color 0.2s;
+        }
+        .order-modal-close:hover { color: #fff; }
+        .order-list {
+            margin: 0 0 18px 0;
+            padding: 0;
+            list-style: none;
+        }
+        .order-list li {
+            margin-bottom: 18px;
+            background: #18181b;
+            border-radius: 8px;
+            padding: 10px 14px;
+        }
+        .order-status {
+            color: #ff6600;
+            font-weight: bold;
+            margin-left: 8px;
+        }
+        @media (max-width: 900px) {
+            .main-banner { padding: 0 10px; }
+            .main-banner-content { padding: 18px 10px; }
+            .categories-grid, .popular-products { grid-template-columns: 1fr 1fr; }
+        }
+        @media (max-width: 600px) {
+            .navbar-main { flex-direction: column; gap: 12px; padding: 12px 6px; }
+            .main-banner { min-height: 180px; }
+            .main-banner-content { padding: 10px 4px; }
+            .categories-grid, .popular-products { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+    <header class="header-main">
+        <nav class="navbar-main">
+            <div class="navbar-links">
+                <a href="#" onclick="scrollToSection('home')">Home</a>
+                <a href="#" onclick="scrollToSection('categories')">Shop</a>
+                <a href="#" onclick="scrollToSection('about')">About Us</a>
+                <a href="#" onclick="scrollToSection('contact')">Contact</a>
+            </div>
+            <div class="navbar-search">
+                <input type="text" id="searchInput" placeholder="Search for PC parts, brands, or categories..." />
+                <button onclick="searchProducts()">Search</button>
+            </div>
+            <div class="navbar-user">
+                <img src="https://cdn-icons-png.flaticon.com/512/1177/1177568.png" alt="User" onclick="alert('Login/Sign Up coming soon!')" title="Account">
+                <div class="navbar-cart">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1170/1170678.png" class="cart-icon" alt="Cart" onclick="openCart()" />
+                    <span class="cart-count" id="cartCount" style="display:none;">0</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main>
+        <section class="main-banner" id="home">
+            <div class="main-banner-content">
+                <h2>Shop the Best PC Parts Online</h2>
+                <p>Discover top deals on graphics cards, processors, memory, storage, and more. Fast shipping nationwide. Build your dream PC with Paradox PC!</p>
+                <button class="shop-btn" onclick="scrollToSection('categories')">Shop Now</button>
+            </div>
+        </section>
+        <section class="categories-section" id="categories">
+            <div class="categories-title">Featured Categories</div>
+            <div class="categories-grid">
+                <div class="category-card" onclick="filterCategory('Graphics Cards')">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1048/1048927.png" alt="GPU">
+                    <span>Graphics Cards</span>
+                </div>
+                <div class="category-card" onclick="filterCategory('Processors')">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1048/1048930.png" alt="CPU">
+                    <span>Processors</span>
+                </div>
+                <div class="category-card" onclick="filterCategory('Motherboards')">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1048/1048932.png" alt="Motherboard">
+                    <span>Motherboards</span>
+                </div>
+                <div class="category-card" onclick="filterCategory('Memory')">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1048/1048933.png" alt="RAM">
+                    <span>Memory</span>
+                </div>
+                <div class="category-card" onclick="filterCategory('Storage')">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1048/1048931.png" alt="SSD">
+                    <span>Storage</span>
+                </div>
+                <div class="category-card" onclick="filterCategory('Cases')">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1048/1048934.png" alt="Case">
+                    <span>Cases</span>
+                </div>
+                <div class="category-card" onclick="filterCategory('Power Supplies')">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1048/1048935.png" alt="PSU">
+                    <span>Power Supplies</span>
+                </div>
+                <div class="category-card" onclick="filterCategory('Cooling')">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1048/1048936.png" alt="Cooler">
+                    <span>Cooling</span>
+                </div>
+                <div class="category-card" onclick="filterCategory('Peripherals')">
+                    <img src="https://cdn-icons-png.flaticon.com/512/1048/1048937.png" alt="Peripherals">
+                    <span>Peripherals</span>
+                </div>
+            </div>
+        </section>
+        <section class="popular-section" id="popular">
+            <div class="popular-title">Popular Products</div>
+            <div class="popular-products" id="productGrid"></div>
+        </section>
+        <section id="about" style="max-width:900px;margin:60px auto 0 auto;padding:0 18px;">
+            <h2 style="color:#ff6600;">About Us</h2>
+            <p>
+                Paradox PC is your trusted online destination for high-quality PC parts, laptops, gaming gear, and accessories. We offer fast shipping, secure checkout, and top-notch customer support. Our mission is to help you build and upgrade your dream setup with the best products and deals.
+            </p>
+        </section>
+        <section id="contact" style="max-width:900px;margin:60px auto 0 auto;padding:0 18px;">
+            <h2 style="color:#ff6600;">Contact</h2>
+            <p>Email: <a href="mailto:support@paradoxpc.com" style="color:#60a5fa;">support@paradoxpc.com</a></p>
+            <p>Phone: <a href="tel:+639123456789" style="color:#60a5fa;">+63 912 345 6789</a></p>
+            <p>Business Hours: Mon-Fri 9:00am - 6:00pm</p>
+            <p>
+                <a href="#" style="color:#60a5fa;">Live Chat</a> | 
+                <a href="#" style="color:#60a5fa;">FAQs</a>
+            </p>
+        </section>
+    </main>
+    <!-- Product Modal -->
+    <div class="product-modal-bg" id="productModalBg">
+        <div class="product-modal" id="productModal">
+            <button class="product-modal-close" onclick="closeProductModal()">&times;</button>
+            <img class="product-modal-mainimg" id="modalMainImg" src="" alt="Product Image">
+            <div class="product-modal-gallery" id="modalGallery"></div>
+            <div class="product-modal-title" id="modalTitle"></div>
+            <div class="product-modal-price" id="modalPrice"></div>
+            <div class="product-modal-desc" id="modalDesc"></div>
+            <div class="product-modal-specs" id="modalSpecs"></div>
+            <div class="product-modal-qty">
+                <label for="modalQty">Qty:</label>
+                <input type="number" id="modalQty" min="1" value="1">
+            </div>
+            <button class="product-modal-addcart" onclick="addToCartFromModal()">Add to Cart</button>
+            <div class="product-modal-reviews" id="modalReviews"></div>
+            <div class="related-products-title">Related Products</div>
+            <div class="related-products" id="modalRelated"></div>
+        </div>
+    </div>
+    <!-- Cart Modal -->
+    <div class="cart-modal-bg" id="cartModalBg">
+        <div class="cart-modal">
+            <button class="cart-modal-close" onclick="closeCart()">&times;</button>
+            <h2 style="color:#ff6600;margin-top:0;">Your Cart</h2>
+            <ul class="cart-list" id="cartList"></ul>
+            <div id="cartTotal" style="font-weight:bold;margin-bottom:12px;"></div>
+            <div style="margin-bottom:12px;">Estimated Shipping: <span id="shippingEstimate">₱350</span> (1-3 days)</div>
+            <button class="checkout-btn" onclick="checkout()">Checkout</button>
+        </div>
+    </div>
+    <!-- Orders Modal -->
+    <div class="order-modal-bg" id="orderModalBg">
+        <div class="order-modal">
+            <button class="order-modal-close" onclick="closeOrders()">&times;</button>
+            <h2 style="color:#ff6600;margin-top:0;">Your Orders</h2>
+            <ul class="order-list" id="orderList"></ul>
+        </div>
+    </div>
+    <footer class="landing-footer">
+        <div>
+            &copy; 2024 Paradox PC &mdash; All rights reserved. | 
+            <a href="#" style="color:#60a5fa;">Privacy Policy</a> | 
+            <a href="#" style="color:#60a5fa;">Terms & Conditions</a>
+        </div>
+        <div style="margin-top:8px;">
+            <a href="#" style="margin:0 8px;"><img src="https://cdn-icons-png.flaticon.com/512/733/733547.png" alt="Facebook" width="24"></a>
+            <a href="#" style="margin:0 8px;"><img src="https://cdn-icons-png.flaticon.com/512/733/733558.png" alt="Twitter" width="24"></a>
+            <a href="#" style="margin:0 8px;"><img src="https://cdn-icons-png.flaticon.com/512/733/733614.png" alt="Instagram" width="24"></a>
+            <a href="#" style="margin:0 8px;"><img src="https://cdn-icons-png.flaticon.com/512/733/733585.png" alt="YouTube" width="24"></a>
+        </div>
+        <form style="margin-top:18px;" onsubmit="subscribeNewsletter(event)">
+            <input type="email" id="newsletterEmail" placeholder="Subscribe to our newsletter" style="padding:8px 14px;border-radius:6px 0 0 6px;border:none;width:220px;">
+            <button type="submit" style="padding:8px 18px;border-radius:0 6px 6px 0;border:none;background:#ff6600;color:#fff;font-weight:bold;">Subscribe</button>
+        </form>
+    </footer>
+    <script>
+        // --- Product Data (with categories, images, specs, reviews, etc.) ---
+const products = [
+    {
+        name: "ASUS ROG Strix GeForce RTX 4090",
+        category: "Graphics Cards",
+        img: "https://drive.google.com/uc?export=view&id=1xd0Lb0eBdq4q6mUNlQaXBByLNgsSxyzh",
+        gallery: [
+            "https://drive.google.com/uc?export=view&id=1xd0Lb0eBdq4q6mUNlQaXBByLNgsSxyzh",
+            "https://drive.google.com/uc?export=view&id=1xBBUgje_rFrKcmZCRQbQkhwbVI-k1iMj"
+        ],
+        price: "₱129,999",
+        desc: "24GB GDDR6X, Ray Tracing, DLSS 3, Triple Fan Cooling. The ASUS ROG Strix RTX 4090 delivers extreme performance for 4K gaming and content creation.",
+        specs: "<b>Specs:</b><br>CUDA Cores: 16384<br>Boost Clock: 2610 MHz<br>Memory: 24GB GDDR6X<br>Outputs: 3x DP, 2x HDMI<br>Power: 850W+ PSU recommended",
+        reviews: [
+            { user: "Mark", rating: 5, text: "Insane performance! Worth every peso." },
+            { user: "Jane", rating: 5, text: "Runs all my games at max settings." }
+        ]
+    },
+    {
+        name: "Intel Core i9-13900K",
+        category: "Processors",
+        img: "https://drive.google.com/uc?export=view&id=1xTncDnoXMGV93QmJGp6K-SZVRoName2f",
+        gallery: [
+            "https://drive.google.com/uc?export=view&id=1xTncDnoXMGV93QmJGp6K-SZVRoName2f"
+        ],
+        price: "₱34,500",
+        desc: "24 Cores, 32 Threads, up to 5.8GHz Turbo. The i9-13900K is Intel's flagship for enthusiasts and creators.",
+        specs: "<b>Specs:</b><br>24 Cores (8P+16E)<br>32 Threads<br>Base Clock: 3.0GHz<br>Turbo: up to 5.8GHz<br>Socket: LGA1700<br>TDP: 125W",
+        reviews: [
+            { user: "Carlos", rating: 5, text: "Best CPU for gaming and streaming." }
+        ]
+    },
+    {
+        name: "AMD Ryzen 9 7950X3D",
+        category: "Processors",
+        img: "https://drive.google.com/uc?export=view&id=1DeUI6LmSzyvf6pghtQYwgXkR-Doqjhha",
+        gallery: [
+            "https://drive.google.com/uc?export=view&id=1DeUI6LmSzyvf6pghtQYwgXkR-Doqjhha"
+        ],
+        price: "₱38,999",
+        desc: "16 Cores, 32 Threads, 3D V-Cache, AM5 platform. The Ryzen 9 7950X3D is a top choice for gamers and power users.",
+        specs: "<b>Specs:</b><br>16 Cores / 32 Threads<br>Base Clock: 4.2GHz<br>Boost: up to 5.7GHz<br>Cache: 144MB<br>Socket: AM5<br>TDP: 120W",
+        reviews: [
+            { user: "Liza", rating: 5, text: "Superb for multitasking and gaming." }
+        ]
+    },
+    {
+        name: "G.Skill Trident Z5 RGB 32GB",
+        category: "Memory",
+        img: "https://drive.google.com/uc?export=view&id=1Cq-stSTKGYRwRs61qH5BF7UkOi5gH_Wl",
+        gallery: [
+            "https://drive.google.com/uc?export=view&id=1Cq-stSTKGYRwRs61qH5BF7UkOi5gH_Wl"
+        ],
+        price: "₱9,800",
+        desc: "32GB (2x16GB) DDR5-6000 CL36. Stunning RGB lighting and top-tier performance for next-gen builds.",
+        specs: "<b>Specs:</b><br>Capacity: 32GB (2x16GB)<br>Speed: DDR5-6000<br>CAS Latency: CL36<br>Voltage: 1.35V<br>RGB: Yes",
+        reviews: [
+            { user: "Rico", rating: 4, text: "Fast and looks great in my build." }
+        ]
+    },
+    {
+        name: "Samsung 980 PRO 1TB NVMe SSD",
+        category: "Storage",
+        img: "https://drive.google.com/uc?export=view&id=1Jq0s7LLGWsJFdj5oXBPl5R1NJlrpjGts",
+        gallery: [
+            "https://drive.google.com/uc?export=view&id=1Jq0s7LLGWsJFdj5oXBPl5R1NJlrpjGts"
+        ],
+        price: "₱6,500",
+        desc: "PCIe 4.0, up to 7,000MB/s read speed. Ideal for gaming, content creation, and fast boot times.",
+        specs: "<b>Specs:</b><br>Capacity: 1TB<br>Interface: PCIe 4.0 x4 NVMe<br>Read: up to 7,000MB/s<br>Write: up to 5,000MB/s<br>Form Factor: M.2 2280",
+        reviews: [
+            { user: "Mia", rating: 5, text: "Super fast load times!" }
+        ]
+    },
+    {
+        name: "MSI MEG Trident X Gaming PC",
+        category: "PCs",
+        img: "https://drive.google.com/uc?export=view&id=1EJByCgfVlR_YjSNrGECYJxS07vhEPCW2",
+        gallery: [
+            "https://drive.google.com/uc?export=view&id=1EJByCgfVlR_YjSNrGECYJxS07vhEPCW2"
+        ],
+        price: "₱159,000",
+        desc: "12th Gen Intel, RTX 3080, 32GB RAM, 2TB SSD. Small form factor, big performance.",
+        specs: "<b>Specs:</b><br>CPU: Intel Core i7/i9 12th Gen<br>GPU: RTX 3080 10GB<br>RAM: 32GB DDR5<br>Storage: 2TB NVMe SSD<br>WiFi 6, Windows 11",
+        reviews: [
+            { user: "Paolo", rating: 5, text: "All-in-one beast for gaming." }
+        ]
+    },
+    {
+        name: "Cooler Master ML360L V2 ARGB",
+        category: "Cooling",
+        img: "https://drive.google.com/uc?export=view&id=15IxT1TX8YZaHqu4Nn1ZNtZldxm-HF1vg",
+        gallery: [
+            "https://drive.google.com/uc?export=view&id=15IxT1TX8YZaHqu4Nn1ZNtZldxm-HF1vg"
+        ],
+        price: "₱5,900",
+        desc: "Efficient and stylish CPU cooling with addressable RGB. Compatible with Intel & AMD sockets.",
+        specs: "<b>Specs:</b><br>Radiator: 360mm<br>Fans: 3x 120mm ARGB<br>Socket: Intel & AMD<br>Noise: 15-30dBA<br>Warranty: 2 Years",
+        reviews: [
+            { user: "Jules", rating: 4, text: "Keeps my CPU cool and quiet." }
+        ]
+    },
+    {
+        name: "Corsair RM850x 850W PSU",
+        category: "Power Supplies",
+        img: "https://drive.google.com/uc?export=view&id=1fLiBhUAHGcwtiAU-SejoJD9FrWSpVGg0",
+        gallery: [
+            "https://drive.google.com/uc?export=view&id=1fLiBhUAHGcwtiAU-SejoJD9FrWSpVGg0"
+        ],
+        price: "₱7,200",
+        desc: "850W, 80+ Gold certified, fully modular cables, silent operation, 10-year warranty.",
+        specs: "<b>Specs:</b><br>Wattage: 850W<br>Efficiency: 80+ Gold<br>Modular: Yes<br>Fan: 135mm<br>Warranty: 10 Years",
+        reviews: [
+            { user: "Sam", rating: 5, text: "Reliable and quiet PSU." }
+        ]
+    },
+    {
+        name: "ASUS ROG Maximus Z790 Hero",
+        category: "Motherboards",
+        img: "https://drive.google.com/uc?export=view&id=1OlnrlSDaw5bLwtOaeOzqs_rURPukf9bY",
+        gallery: ["https://drive.google.com/uc?export=view&id=1OlnrlSDaw5bLwtOaeOzqs_rURPukf9bY"],
+        price: "₱22,500",
+        desc: "High-end Z790 motherboard with PCIe 5.0, DDR5 support, AI networking and robust power delivery for overclocking.",
+        specs: "<b>Specs:</b><br>Chipset: Z790<br>Socket: LGA1700<br>Memory: DDR5 (4x)<br>PCIe: 5.0 x16<br>Form Factor: ATX",
+        reviews: [ { user: "Ethan", rating: 5, text: "Great features for builders and overclockers." } ]
+    },
+    {
+        name: "Lian Li PC-O11 Dynamic",
+        category: "Cases",
+        img: "https://drive.google.com/uc?export=view&id=1LfRwopvkgnZvaPlo2GbVRVIXFmjFj7GW",
+        gallery: ["https://drive.google.com/uc?export=view&id=1LfRwopvkgnZvaPlo2GbVRVIXFmjFj7GW"],
+        price: "₱7,900",
+        desc: "Popular dual-chamber case with excellent airflow and tempered glass for showcase builds.",
+        specs: "<b>Specs:</b><br>Type: Mid-Tower<br>Material: Steel + Tempered Glass<br>Max GPU Length: 420mm<br>Radiator Support: 360mm",
+        reviews: [ { user: "Ana", rating: 4, text: "Stylish and roomy, good cable management." } ]
+    },
+    {
+        name: "Logitech G502 HERO",
+        category: "Peripherals",
+        img: "https://drive.google.com/uc?export=view&id=1rW5jXtCEVUk9QeibI5mC_0jzw9rwTB3k",
+        gallery: ["https://drive.google.com/uc?export=view&id=1rW5jXtCEVUk9QeibI5mC_0jzw9rwTB3k"],
+        price: "₱3,200",
+        desc: "Wired gaming mouse with HERO sensor, customizable weights and programmable buttons.",
+        specs: "<b>Specs:</b><br>Sensor: HERO 25K<br>Buttons: 11 programmable<br>Weight: Adjustable<br>Connection: Wired USB",
+        reviews: [ { user: "Ben", rating: 5, text: "Excellent sensor and comfortable grip." } ]
+    }
+        ];
+
+        // --- Cart and Orders State ---
+        let cart = [];
+        let orders = [];
+        let filteredCategory = null;
+
+        // helper: slugify product name for local filename
+        function slugify(name){
+            return name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/(^-|-$)/g,'');
+        }
+        function extractDriveId(url){
+            if(!url) return null;
+            var m = url.match(/\/d\/([a-zA-Z0-9_-]+)/) || url.match(/[?&]id=([a-zA-Z0-9_-]+)/);
+            return m ? m[1] : null;
+        }
+        function driveCandidates(url){
+            var id = extractDriveId(url);
+            if(!id) return [url];
+            return [
+                'https://drive.google.com/uc?export=view&id='+id,
+                'https://drive.google.com/uc?export=download&id='+id,
+                'https://drive.google.com/thumbnail?id='+id,
+                'https://drive.google.com/file/d/'+id+'/preview'
+            ];
+        }
+        function tryDriveVariants(img, originalUrl){
+            if(!originalUrl || img._triedDrive) return;
+            img._triedDrive = true;
+            var cands = driveCandidates(originalUrl);
+            var i = 0;
+            img.onerror = function(){
+                if(i >= cands.length){
+                    // final fallback placeholder svg
+                    img.onerror = null;
+                    var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="400" height="300"><rect width="100%" height="100%" fill="#111"/><text x="50%" y="50%" fill="#ff6600" font-size="18" font-family="Segoe UI, Arial" dominant-baseline="middle" text-anchor="middle">Image unavailable</text></svg>';
+                    img.src = 'data:image/svg+xml;utf8,' + encodeURIComponent(svg);
+                    return;
+                }
+                img.src = cands[i++];
+            };
+            // kick off trying first candidate
+            img.onerror();
+        }
+
+        // --- Render Products ---
+        function renderProducts() {
+            const grid = document.getElementById('productGrid');
+            grid.innerHTML = '';
+            let filtered = products;
+            if (filteredCategory) {
+                filtered = products.filter(p => p.category === filteredCategory);
+            }
+            filtered.forEach((prod, idx) => {
+                const card = document.createElement('div');
+                card.className = 'product-card';
+
+                // thumbnail image: try local first
+                const imgEl = document.createElement('img');
+                const slug = slugify(prod.name);
+                imgEl.alt = prod.name;
+                imgEl.src = 'images/' + slug + '.png';
+                // on local fail, try drive variants from prod.img
+                imgEl.onerror = function(){ tryDriveVariants(imgEl, prod.img); };
+
+                const title = document.createElement('div');
+                title.className = 'product-title';
+                title.textContent = prod.name;
+
+                const price = document.createElement('div');
+                price.className = 'product-price';
+                price.textContent = prod.price;
+
+                const qtyDiv = document.createElement('div');
+                qtyDiv.className = 'product-qty';
+                qtyDiv.innerHTML = `<label for="qty${idx}" style="font-size:0.95em;">Qty:</label>`;
+                const qtyInput = document.createElement('input');
+                qtyInput.type = 'number'; qtyInput.id = 'qty'+idx; qtyInput.min = 1; qtyInput.value = 1;
+                qtyDiv.appendChild(qtyInput);
+
+                const btn = document.createElement('button');
+                btn.className = 'add-cart-btn';
+                btn.textContent = 'Add to Cart';
+                btn.onclick = function(e){ addToCart(idx, document.getElementById('qty'+idx).value); e.stopPropagation(); };
+
+                card.appendChild(imgEl);
+                card.appendChild(title);
+                card.appendChild(price);
+                card.appendChild(qtyDiv);
+                card.appendChild(btn);
+
+                card.onclick = () => showProductModal(idx);
+                grid.appendChild(card);
+            });
+        }
+
+        // --- Product Modal ---
+        let modalProductIdx = 0;
+        function showProductModal(idx) {
+            modalProductIdx = idx;
+            const prod = products[idx];
+            const slug = slugify(prod.name);
+            const mainLocal = 'images/' + slug + '.png';
+            const mainImg = document.getElementById('modalMainImg');
+            mainImg.src = mainLocal;
+            mainImg.alt = prod.name;
+            mainImg.onerror = function(){ tryDriveVariants(mainImg, prod.img); };
+
+            // Gallery
+            const galleryDiv = document.getElementById('modalGallery');
+            galleryDiv.innerHTML = '';
+            prod.gallery.forEach((g, i) => {
+                const imgEl = document.createElement('img');
+                imgEl.alt = prod.name + ' image ' + (i+1);
+                // try local gallery filename patterns
+                imgEl.src = 'images/' + slug + '-gallery' + (i+1) + '.png';
+                imgEl.className = i === 0 ? 'selected' : '';
+                imgEl.onclick = function(e) {
+                    document.getElementById('modalMainImg').src = imgEl.src;
+                    Array.from(galleryDiv.children).forEach(child => child.classList.remove('selected'));
+                    imgEl.classList.add('selected');
+                    e.stopPropagation();
+                };
+                imgEl.onerror = function(){ tryDriveVariants(imgEl, g); };
+                galleryDiv.appendChild(imgEl);
+            });
+
+            document.getElementById('modalTitle').textContent = prod.name;
+            document.getElementById('modalPrice').textContent = prod.price;
+            document.getElementById('modalDesc').textContent = prod.desc;
+            document.getElementById('modalSpecs').innerHTML = prod.specs;
+            document.getElementById('modalQty').value = 1;
+            // Reviews
+            const reviewsDiv = document.getElementById('modalReviews');
+            reviewsDiv.innerHTML = '<b>Customer Reviews:</b>' + (prod.reviews && prod.reviews.length ? '' : ' <span style="color:#aaa;">No reviews yet.</span>');
+            prod.reviews && prod.reviews.forEach(r => {
+                reviewsDiv.innerHTML += `
+                    <div class="review">
+                        <span class="review-user">${r.user}</span>
+                        <span class="review-rating">${'★'.repeat(r.rating)}${'☆'.repeat(5-r.rating)}</span>
+                        <div class="review-text">${r.text}</div>
+                    </div>
+                `;
+            });
+            // Related
+            const relatedDiv = document.getElementById('modalRelated');
+            relatedDiv.innerHTML = '';
+            products.filter((p, i) => p.category === prod.category && i !== idx).slice(0,3).forEach((rel, i) => {
+                const relCard = document.createElement('div');
+                relCard.className = 'related-product-card';
+                relCard.innerHTML = `<img src="${rel.img}" alt="${rel.name}"><div class="product-title">${rel.name}</div>`;
+                relCard.onclick = () => showProductModal(products.indexOf(rel));
+                relatedDiv.appendChild(relCard);
+            });
+            document.getElementById('productModalBg').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeProductModal() {
+            document.getElementById('productModalBg').style.display = 'none';
+            document.body.style.overflow = '';
+        }
+        function addToCartFromModal() {
+            const qty = parseInt(document.getElementById('modalQty').value) || 1;
+            addToCart(modalProductIdx, qty);
+            closeProductModal();
+        }
+
+        // --- Cart Logic ---
+        function addToCart(idx, qty = 1) {
+            qty = parseInt(qty) || 1;
+            const found = cart.find(item => item.idx === idx);
+            if (found) found.qty += qty;
+            else cart.push({ idx, qty });
+            updateCartCount();
+        }
+        function openCart() {
+            renderCart();
+            document.getElementById('cartModalBg').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeCart() {
+            document.getElementById('cartModalBg').style.display = 'none';
+            document.body.style.overflow = '';
+        }
+        function renderCart() {
+            const list = document.getElementById('cartList');
+            list.innerHTML = '';
+            let total = 0;
+            cart.forEach((item, i) => {
+                const prod = products[item.idx];
+                total += parseInt(prod.price.replace(/[^\d]/g, '')) * item.qty;
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <img src="${prod.img}" alt="${prod.name}">
+                    <span>${prod.name} x${item.qty}</span>
+                    <span style="margin-left:8px;color:#ff6600;">₱${(parseInt(prod.price.replace(/[^\d]/g, '')) * item.qty).toLocaleString()}</span>
+                    <button class="cart-remove" onclick="removeCartItem(${i})">&times;</button>
+                `;
+                list.appendChild(li);
+            });
+            document.getElementById('cartTotal').textContent = "Total: ₱" + total.toLocaleString();
+            document.getElementById('shippingEstimate').textContent = total > 20000 ? "FREE" : "₱350";
+            updateCartCount();
+        }
+        function removeCartItem(i) {
+            cart.splice(i, 1);
+            renderCart();
+            updateCartCount();
+        }
+        function updateCartCount() {
+            document.getElementById('cartCount').textContent = cart.length;
+            document.getElementById('cartCount').style.display = cart.length ? 'inline-block' : 'none';
+        }
+        function checkout() {
+            if (!cart.length) return;
+            const order = {
+                items: cart.map(item => ({
+                    name: products[item.idx].name,
+                    qty: item.qty,
+                    price: products[item.idx].price
+                })),
+                total: cart.reduce((sum, item) => sum + parseInt(products[item.idx].price.replace(/[^\d]/g, '')) * item.qty, 0),
+                status: "Processing",
+                date: new Date().toLocaleString()
+            };
+            orders.push(order);
+            cart = [];
+            closeCart();
+            updateCartCount();
+            alert("Order placed! You can view your orders by clicking 'My Orders'.");
+        }
+
+        // --- Orders Logic ---
+        function openOrders() {
+            renderOrders();
+            document.getElementById('orderModalBg').style.display = 'flex';
+            document.body.style.overflow = 'hidden';
+        }
+        function closeOrders() {
+            document.getElementById('orderModalBg').style.display = 'none';
+            document.body.style.overflow = '';
+        }
+        function renderOrders() {
+            const list = document.getElementById('orderList');
+            list.innerHTML = '';
+            if (!orders.length) {
+                list.innerHTML = "<li>No orders yet.</li>";
+                return;
+            }
+            orders.forEach(order => {
+                const li = document.createElement('li');
+                li.innerHTML = `
+                    <div><b>Date:</b> ${order.date}</div>
+                    <div><b>Status:</b> <span class="order-status">${order.status}</span></div>
+                    <div><b>Items:</b>
+                        <ul style="margin:0 0 0 16px;padding:0;">
+                            ${order.items.map(item => `<li>${item.name} x${item.qty} - ${item.price}</li>`).join('')}
+                        </ul>
+                    </div>
+                    <div><b>Total:</b> ₱${order.total.toLocaleString()}</div>
+                `;
+                list.appendChild(li);
+            });
+        }
+
+        // --- Category Filter ---
+        function filterCategory(cat) {
+            filteredCategory = cat;
+            renderProducts();
+            scrollToSection('popular');
+        }
+
+        // --- Search ---
+        function searchProducts() {
+            const val = document.getElementById('searchInput').value.trim().toLowerCase();
+            if (!val) return;
+            const idx = products.findIndex(p => p.name.toLowerCase().includes(val) || (p.category && p.category.toLowerCase().includes(val)));
+            if (idx >= 0) showProductModal(idx);
+            else alert('No product found for: ' + val);
+        }
+
+        // --- Scroll to Section ---
+        function scrollToSection(id) {
+            const el = document.getElementById(id);
+            if (el) el.scrollIntoView({behavior:'smooth'});
+        }
+
+        // --- Newsletter ---
+        function subscribeNewsletter(e) {
+            e.preventDefault();
+            const email = document.getElementById('newsletterEmail').value.trim();
+            if (!email) return alert('Please enter your email.');
+            alert('Thank you for subscribing!');
+            document.getElementById('newsletterEmail').value = '';
+        }
+
+        // --- Modal Close Logic ---
+        window.addEventListener('keydown', e => {
+            if (e.key === 'Escape') {
+                closeCart();
+                closeOrders();
+                closeProductModal();
+            }
+        });
+        document.getElementById('cartModalBg').onclick = function(e) { if (e.target === this) closeCart(); };
+        document.getElementById('orderModalBg').onclick = function(e) { if (e.target === this) closeOrders(); };
+        document.getElementById('productModalBg').onclick = function(e) { if (e.target === this) closeProductModal(); };
+
+        // --- Initial Render ---
+        document.addEventListener('DOMContentLoaded', function() {
+            renderProducts();
+        });
+    </script>
+</body>
+</html>
