@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Weather Dashboard - Philippines</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            background: linear-gradient(135deg, #18181b 0%, #23272f 100%);
+            color: #f3f4f6;
+            min-height: 100vh;
+        }
+        .header-earth {
+            background: linear-gradient(90deg, #23272f 60%, #18181b 100%);
+            padding: 36px 0 18px 0;
+            text-align: center;
+            position: relative;
+        }
+        .header-earth img {
+            width: 80px;
+            vertical-align: middle;
+            margin-right: 18px;
+            filter: drop-shadow(0 0 12px #60a5fa88);
+        }
+        h1 {
+            color: #60a5fa;
+            display: inline-block;
+            vertical-align: middle;
+            font-size: 2.2em;
+            margin: 0;
+            letter-spacing: 2px;
+        }
+        .subtitle {
+            color: #ff6600;
+            font-size: 1.1em;
+            margin-top: 8px;
+            letter-spacing: 1px;
+        }
+        .api-notice {
+            background: #fbbf24;
+            color: #92400e;
+            padding: 12px;
+            text-align: center;
+            font-weight: bold;
+            margin-bottom: 20px;
+        }
+        .weather-controls {
+            margin: 32px auto 0 auto;
+            text-align: center;
+        }
+        select, input {
+            padding: 10px;
+            border-radius: 6px;
+            border: 1px solid #333;
+            background: #23272f;
+            color: #fff;
+            margin-right: 8px;
+            font-size: 1em;
+            min-width: 200px;
+        }
+        button {
+            padding: 10px 22px;
+            border: none;
+            background: #ff6600;
+            color: #fff;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1em;
+            transition: background 0.3s;
+        }
+        button:hover { background: #ff3300; }
+        button:disabled { 
+            background: #666; 
+            cursor: not-allowed; 
+        }
+        #weather {
+            margin: 32px auto 0 auto;
+            background: #23272f;
+            padding: 24px;
+            border-radius: 10px;
+            box-shadow: 0 2px 12px #000a;
+            min-height: 120px;
+            max-width: 400px;
+        }
+        .weather-main { font-size: 2em; color: #ff6600; }
+        .weather-icon { vertical-align: middle; margin-right: 8px; }
+        .forecast {
+            margin: 24px auto 0 auto;
+            max-width: 700px;
+            text-align: center;
+        }
+        .forecast-day {
+            display: inline-block;
+            background: #23272f;
+            border-radius: 8px;
+            margin: 8px 8px 0 0;
+            padding: 12px 18px;
+            min-width: 120px;
+            text-align: center;
+        }
+        .forecast-day .weather-main { font-size: 1.1em; }
+        .ph-map {
+            display: block;
+            margin: 32px auto 0 auto;
+            width: 120px;
+            opacity: 0.7;
+            filter: drop-shadow(0 0 8px #60a5fa88);
+        }
+        .error {
+            color: #ef4444;
+            background: rgba(239, 68, 68, 0.1);
+            padding: 12px;
+            border-radius: 6px;
+            margin: 12px 0;
+        }
+        @media (max-width: 600px) {
+            body { margin: 0; }
+            #weather { padding: 12px; margin: 16px; }
+            .forecast-day { min-width: 90px; padding: 8px 6px; margin: 4px; }
+            .header-earth img { width: 48px; }
+            .ph-map { width: 70px; }
+            select { min-width: 150px; margin-bottom: 8px; }
+        }
+    </style>
+</head>
+<body>
+    <div class="api-notice">
+        ⚠️ Demo Mode: Get your free API key from OpenWeatherMap.org to enable live weather data
+    </div>
+    
+    <div class="header-earth">
+        <img src="https://upload.wikimedia.org/wikipedia/commons/8/83/Earth_Western_Hemisphere_transparent_background.png" alt="Earth" onerror="this.style.display='none'">
+        <h1>Weather Dashboard</h1>
+        <div class="subtitle">Philippines Only</div>
+    </div>
+    
+    <div class="weather-controls">
+        <select id="city">
+            <option value="">Select a province...</option>
+            <option value="Metro Manila">Metro Manila</option>
+            <option value="Cebu">Cebu</option>
+            <option value="Davao">Davao</option>
+            <option value="Abra">Abra</option>
+            <option value="Agusan del Norte">Agusan del Norte</option>
+            <option value="Agusan del Sur">Agusan del Sur</option>
+            <option value="Aklan">Aklan</option>
+            <option value="Albay">Albay</option>
+            <option value="Antique">Antique</option>
+            <option value="Apayao">Apayao</option>
+            <option value="Aurora">Aurora</option>
+            <option value="Basilan">Basilan</option>
+            <option value="Bataan">Bataan</option>
+            <option value="Batanes">Batanes</option>
+            <option value="Batangas">Batangas</option>
+            <option value="Benguet">Benguet</option>
+            <option value="Biliran">Biliran</option>
+            <option value="Bohol">Bohol</option>
+            <option value="Bukidnon">Bukidnon</option>
+            <option value="Bulacan">Bulacan</option>
+            <option value="Cagayan">Cagayan</option>
+            <option value="Camarines Norte">Camarines Norte</option>
+            <option value="Camarines Sur">Camarines Sur</option>
+            <option value="Camiguin">Camiguin</option>
+            <option value="Capiz">Capiz</option>
+            <option value="Catanduanes">Catanduanes</option>
+            <option value="Cavite">Cavite</option>
+            <option value="Cotabato">Cotabato</option>
+            <option value="Davao de Oro">Davao de Oro</option>
+            <option value="Davao del Norte">Davao del Norte</option>
+            <option value="Davao del Sur">Davao del Sur</option>
+            <option value="Davao Occidental">Davao Occidental</option>
+            <option value="Davao Oriental">Davao Oriental</option>
+            <option value="Dinagat Islands">Dinagat Islands</option>
+            <option value="Eastern Samar">Eastern Samar</option>
+            <option value="Guimaras">Guimaras</option>
+            <option value="Ifugao">Ifugao</option>
+            <option value="Ilocos Norte">Ilocos Norte</option>
+            <option value="Ilocos Sur">Ilocos Sur</option>
+            <option value="Iloilo">Iloilo</option>
+            <option value="Isabela">Isabela</option>
+            <option value="Kalinga">Kalinga</option>
+            <option value="La Union">La Union</option>
+            <option value="Laguna">Laguna</option>
+            <option value="Lanao del Norte">Lanao del Norte</option>
+            <option value="Lanao del Sur">Lanao del Sur</option>
+            <option value="Leyte">Leyte</option>
+            <option value="Maguindanao">Maguindanao</option>
+            <option value="Marinduque">Marinduque</option>
+            <option value="Masbate">Masbate</option>
+            <option value="Misamis Occidental">Misamis Occidental</option>
+            <option value="Misamis Oriental">Misamis Oriental</option>
+            <option value="Mountain Province">Mountain Province</option>
+            <option value="Negros Occidental">Negros Occidental</option>
+            <option value="Negros Oriental">Negros Oriental</option>
+            <option value="Northern Samar">Northern Samar</option>
+            <option value="Nueva Ecija">Nueva Ecija</option>
+            <option value="Nueva Vizcaya">Nueva Vizcaya</option>
+            <option value="Occidental Mindoro">Occidental Mindoro</option>
+            <option value="Oriental Mindoro">Oriental Mindoro</option>
+            <option value="Palawan">Palawan</option>
+            <option value="Pampanga">Pampanga</option>
+            <option value="Pangasinan">Pangasinan</option>
+            <option value="Quezon">Quezon</option>
+            <option value="Quirino">Quirino</option>
+            <option value="Rizal">Rizal</option>
+            <option value="Romblon">Romblon</option>
+            <option value="Samar">Samar</option>
+            <option value="Sarangani">Sarangani</option>
+            <option value="Siquijor">Siquijor</option>
+            <option value="Sorsogon">Sorsogon</option>
+            <option value="South Cotabato">South Cotabato</option>
+            <option value="Southern Leyte">Southern Leyte</option>
+            <option value="Sultan Kudarat">Sultan Kudarat</option>
+            <option value="Sulu">Sulu</option>
+            <option value="Surigao del Norte">Surigao del Norte</option>
+            <option value="Surigao del Sur">Surigao del Sur</option>
+            <option value="Tarlac">Tarlac</option>
+            <option value="Tawi-Tawi">Tawi-Tawi</option>
+            <option value="Zambales">Zambales</option>
+            <option value="Zamboanga del Norte">Zamboanga del Norte</option>
+            <option value="Zamboanga del Sur">Zamboanga del Sur</option>
+            <option value="Zamboanga Sibugay">Zamboanga Sibugay</option>
+        </select>
+        <button onclick="getWeather()">Get Weather</button>
+    </div>
+    
+    <img class="ph-map" src="https://upload.wikimedia.org/wikipedia/commons/5/5a/Ph_locator_map_philippines.png" alt="Philippines Map" onerror="this.style.display='none'">
+    
+    <div id="weather"></div>
+    <div class="forecast" id="forecast"></div>
+
+    <script>
+        // Replace with your actual OpenWeatherMap API key
+        const apiKey = 'YOUR_OPENWEATHERMAP_API_KEY';
+
+        // Demo data for when API key is not configured
+        const demoData = {
+            'Metro Manila': {
+                current: {
+                    name: 'Manila',
+                    country: 'PH',
+                    temp: 28,
+                    feels_like: 32,
+                    humidity: 78,
+                    wind_speed: 3.2,
+                    weather: 'Partly Cloudy',
+                    icon: '02d'
+                },
+                forecast: [
+                    { date: '2025-09-09', temp: 29, weather: 'Sunny', icon: '01d' },
+                    { date: '2025-09-10', temp: 27, weather: 'Rainy', icon: '10d' },
+                    { date: '2025-09-11', temp: 26, weather: 'Cloudy', icon: '04d' },
+                    { date: '2025-09-12', temp: 28, weather: 'Sunny', icon: '01d' },
+                    { date: '2025-09-13', temp: 30, weather: 'Hot', icon: '01d' }
+                ]
+            },
+            'Cebu': {
+                current: {
+                    name: 'Cebu City',
+                    country: 'PH',
+                    temp: 26,
+                    feels_like: 29,
+                    humidity: 82,
+                    wind_speed: 2.8,
+                    weather: 'Rainy',
+                    icon: '10d'
+                },
+                forecast: [
+                    { date: '2025-09-09', temp: 27, weather: 'Partly Cloudy', icon: '02d' },
+                    { date: '2025-09-10', temp: 25, weather: 'Rainy', icon: '10d' },
+                    { date: '2025-09-11', temp: 28, weather: 'Sunny', icon: '01d' },
+                    { date: '2025-09-12', temp: 26, weather: 'Cloudy', icon: '04d' },
+                    { date: '2025-09-13', temp: 29, weather: 'Hot', icon: '01d' }
+                ]
+            }
+        };
+
+        async function getWeather() {
+            const city = document.getElementById('city').value.trim();
+            if (!city) {
+                alert('Please select a province first!');
+                return;
+            }
+
+            const button = document.querySelector('button');
+            button.disabled = true;
+            button.textContent = 'Loading...';
+            
+            document.getElementById('weather').innerHTML = '<p>Loading weather data...</p>';
+            document.getElementById('forecast').innerHTML = '';
+
+            try {
+                if (apiKey === 'YOUR_OPENWEATHERMAP_API_KEY') {
+                    // Use demo data when API key is not configured
+                    showDemoData(city);
+                } else {
+                    // Use real API when key is configured
+                    await fetchRealWeatherData(city);
+                }
+            } catch (error) {
+                console.error('Weather fetch error:', error);
+                document.getElementById('weather').innerHTML = `
+                    <div class="error">
+                        <strong>Error:</strong> Unable to fetch weather data. 
+                        Please check your internet connection or try again later.
+                    </div>
+                `;
+            } finally {
+                button.disabled = false;
+                button.textContent = 'Get Weather';
+            }
+        }
+
+        function showDemoData(city) {
+            const data = demoData[city];
+            if (!data) {
+                document.getElementById('weather').innerHTML = `
+                    <div class="error">
+                        <strong>Demo Mode:</strong> Weather data for "${city}" is not available in demo mode. 
+                        Try "Metro Manila" or "Cebu", or configure your API key for live data.
+                    </div>
+                `;
+                return;
+            }
+
+            // Show current weather
+            const current = data.current;
+            document.getElementById('weather').innerHTML = `
+                <div>
+                    <img class="weather-icon" src="https://openweathermap.org/img/wn/${current.icon}@2x.png" alt="${current.weather}" />
+                    <span class="weather-main">${current.weather}</span>
+                </div>
+                <h2>${current.name}, ${current.country}</h2>
+                <p>Temperature: <b>${current.temp} °C</b></p>
+                <p>Feels like: ${current.feels_like} °C</p>
+                <p>Humidity: ${current.humidity}%</p>
+                <p>Wind: ${current.wind_speed} m/s</p>
+                <p><small style="color: #888;">📍 Demo data - Configure API key for live weather</small></p>
+            `;
+
+            // Show forecast
+            const forecastDiv = document.getElementById('forecast');
+            data.forecast.forEach(item => {
+                forecastDiv.innerHTML += `
+                    <div class="forecast-day">
+                        <div>${item.date}</div>
+                        <img class="weather-icon" src="https://openweathermap.org/img/wn/${item.icon}.png" alt="${item.weather}" />
+                        <div class="weather-main">${item.weather}</div>
+                        <div>${item.temp} °C</div>
+                    </div>
+                `;
+            });
+        }
+
+        async function fetchRealWeatherData(city) {
+            // Current weather
+            const res = await fetch(`https://api.openweathermap.org/data/2.5/weather?q=${encodeURIComponent(city)},PH&appid=${apiKey}&units=metric`);
+            if (!res.ok) {
+                throw new Error(`HTTP error! status: ${res.status}`);
+            }
+            const data = await res.json();
+            
+            const icon = data.weather[0].icon;
+            document.getElementById('weather').innerHTML = `
+                <div>
+                    <img class="weather-icon" src="https://openweathermap.org/img/wn/${icon}@2x.png" alt="${data.weather[0].main}" />
+                    <span class="weather-main">${data.weather[0].main}</span>
+                </div>
+                <h2>${data.name}, ${data.sys.country}</h2>
+                <p>Temperature: <b>${Math.round(data.main.temp)} °C</b></p>
+                <p>Feels like: ${Math.round(data.main.feels_like)} °C</p>
+                <p>Humidity: ${data.main.humidity}%</p>
+                <p>Wind: ${data.wind.speed} m/s</p>
+                <p><small style="color: #60a5fa;">🌍 Live weather data</small></p>
+            `;
+
+            // 5-day forecast
+            const forecastRes = await fetch(`https://api.openweathermap.org/data/2.5/forecast?q=${encodeURIComponent(city)},PH&appid=${apiKey}&units=metric`);
+            if (!forecastRes.ok) {
+                throw new Error(`Forecast HTTP error! status: ${forecastRes.status}`);
+            }
+            const forecastData = await forecastRes.json();
+            
+            const forecastDiv = document.getElementById('forecast');
+            let lastDate = '';
+            forecastData.list.forEach(item => {
+                const date = item.dt_txt.split(' ')[0];
+                if (date !== lastDate && forecastDiv.childElementCount < 5) {
+                    lastDate = date;
+                    const icon = item.weather[0].icon;
+                    forecastDiv.innerHTML += `
+                        <div class="forecast-day">
+                            <div>${date}</div>
+                            <img class="weather-icon" src="https://openweathermap.org/img/wn/${icon}.png" alt="${item.weather[0].main}" />
+                            <div class="weather-main">${item.weather[0].main}</div>
+                            <div>${Math.round(item.main.temp)} °C</div>
+                        </div>
+                    `;
+                }
+            });
+        }
+
+        // Allow Enter key to trigger search
+        document.getElementById('city').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                getWeather();
+            }
+        });
+    </script>
+</body>
+</html>
